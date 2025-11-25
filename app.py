@@ -17,7 +17,7 @@ clean_text = normalize_text
 
 # Chargement du modèle
 try:
-    model = joblib.load(r"C:\Users\rouhi\Documents\Model.pkl")
+    model = joblib.load(r"Model.pkl")
     st.sidebar.success("Modele charge avec succes")
 except Exception as e:
     st.error(f"Erreur lors du chargement: {e}")
