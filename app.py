@@ -53,8 +53,9 @@ st.write(df_saisie)
 
 if st.button('Lancer la prediction'):
     try:
-        resultat = model.predict(df_saisie)
-        probabilites = model.predict_proba(df_saisie)
+        df_prep = normalize_text(df_saisie)  # prépare les données
+        resultat = model.predict(df_prep)
+        probabilites = model.predict_proba(df_prep)
 
         if resultat[0] == 1:
             st.error(f"Risque ELEVE de maladie cardiaque (Probabilite: {probabilites[0][1]:.1%})")
@@ -62,3 +63,4 @@ if st.button('Lancer la prediction'):
             st.success(f"Risque FAIBLE de maladie cardiaque (Probabilite: {probabilites[0][0]:.1%})")
     except Exception as e:
         st.error(f"Erreur lors de la prediction: {e}")
+
