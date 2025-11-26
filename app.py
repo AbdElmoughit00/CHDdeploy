@@ -4,6 +4,10 @@ import pandas as pd
 import joblib
 import numpy as np
 # Fonction de normalisation textuelle
+def nettoyer_texte(x):
+    # نفس الكود الذي كان مستخدم في تدريب النموذج
+    return x.lower().strip()
+
 def normalize_text(X):
     """Normalise le texte de la colonne famhist"""
     X_copy = X.copy()
