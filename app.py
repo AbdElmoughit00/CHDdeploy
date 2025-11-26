@@ -3,10 +3,16 @@ import streamlit as st
 import pandas as pd
 import joblib
 import numpy as np
-# Fonction de normalisation textuelle
-def nettoyer_texte(x):
-    # نفس الكود الذي كان مستخدم في تدريب النموذج
-    return x.lower().strip()
+def nettoyer_texte(dataframe):
+    df_copie = dataframe.copy()
+    
+    if hasattr(df_copie, 'iloc'):  # Vérifie si c'est un DataFrame ou Series
+        cols_texte = df_copie.select_dtypes(include='object').columns
+        for col in cols_texte:
+            df_copie[col] = df_copie[col].astype(str).str.strip().str.lower()
+    else:  # Array numpy
+        pass
+    return df_copie
 
 def normalize_text(X):
     """Normalise le texte de la colonne famhist"""
