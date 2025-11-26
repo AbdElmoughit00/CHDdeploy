@@ -6,7 +6,7 @@ import numpy as np
 def nettoyer_texte(dataframe):
     df_copie = dataframe.copy()
     
-    if hasattr(df_copie, 'iloc'):  # Vérifie si c'est un DataFrame ou Series
+    if hasattr(df_copie, 'iloc'): 
         cols_texte = df_copie.select_dtypes(include='object').columns
         for col in cols_texte:
             df_copie[col] = df_copie[col].astype(str).str.strip().str.lower()
